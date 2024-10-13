@@ -12,14 +12,14 @@ public class CreateAccountTests extends TestBase {
 
     @BeforeMethod
     public void preCondition() {
-        app.getUserhelper().clickLoginLink();
     }
 
     @Test
     public void createAccountPositiveTest1() {
-       app.getUserhelper(). clickLoginLink();
-       app.getUserhelper(). fillInRegistrationForm(new User()
-                .setEmail("milka_04889151666katze@gmx.de")
+        String email = "delete_account_" + System.currentTimeMillis() + "@gmail.com";
+        app.getUserhelper().clickLoginLink();
+        app.getUserhelper().fillInRegistrationForm(new User()
+                .setEmail(email)
                 .setPassword("Password1@"));
         app.getUserhelper().clickRegistrationButton();
         Assert.assertTrue(app.getUserhelper().isSignOutButtonPresent());
@@ -43,10 +43,11 @@ public class CreateAccountTests extends TestBase {
 
     @Test
     public void createAccountNegativeTest() {
+        String email = "delete_account_" + System.currentTimeMillis() + "@gmail.com";
         SoftAssert softAssert = new SoftAssert();
         app.getUserhelper().clickLoginLink();
         app.getUserhelper().fillInRegistrationForm(new User()
-                .setEmail("milka_040166666666katze@gmx.de")
+                .setEmail(email)
                 .setPassword("Password1@"));
         app.getUserhelper().clickRegistrationButton();
         //Assert.assertFalse(isSignOutButtonPresent());
